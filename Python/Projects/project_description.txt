@@ -1,0 +1,21 @@
+Functions:
+
+This project will be 2 parts, server and client.
+
+Server:
+
+1. The server is installed on a Linux server.
+2. The server should alert when a client is visiting a blacklisted website.
+3. The server should display an alert when the communication is blocked between the client and server is lost.
+
+Client:
+
+1. the client code should support Linux and Windows operating systems.
+2. The client should send a "heartbeat" to the server every few seconds, so the server knows the client is still connected.
+3. the client alerts the server when a duplicate mac address is found in the ARP table.
+
+Logs:
+
+1. all alerts should be logged to a file and saved on the server.
+2. Each event should display when, where, and what happened.
+
