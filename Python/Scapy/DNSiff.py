@@ -7,4 +7,3 @@ def findDNS(p):
         print(p.summary())
         print(p.display())
 sniff(prn=findDNS)
-
