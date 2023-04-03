@@ -33,8 +33,12 @@ def main():
 
         if len(mac_addresses) != len(set(mac_addresses)):
             logging.warning('Duplicate MAC address found in ARP table')
+            client_socket.send('Duplicate MAC address found in ARP table'.encode())
+
+        # Send message to server if google.com was searched
+        if 'google.com' in arp_output:
+            logging.warning('Google.com was searched')
+            client_socket.send('Google.com was searched'.encode())
 
         time.sleep(HEARTBEAT_INTERVAL)
-
-if __name__ == '__main__':
-    main()
+main()

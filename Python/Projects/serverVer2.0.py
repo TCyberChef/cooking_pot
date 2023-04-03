@@ -6,7 +6,6 @@ import logging
 BLACKLIST = ['google.com', 'google.co.uk', 'facebook.com']
 
 logging.basicConfig(filename='server.log', level=logging.INFO)
-
 def main():
     server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
@@ -31,13 +30,13 @@ def main():
                 if not data:
                     sock.close()
                     inputs.remove(sock)
-                    del clients[sock]
-                    logging.info(f'Client disconnected: {clients[sock]}')
+                    if sock in clients:
+                        logging.info(f'Client disconnected: {clients[sock]}')
+                        del clients[sock]
                 else:
                     if any(site in data for site in BLACKLIST):
                         logging.warning(f'Blacklisted site visited by {clients[sock]}: {data}')
                     else:
                         logging.info(f'Visited site: {data}')
 
-if __name__ == '__main__':
-    main()
+main()
